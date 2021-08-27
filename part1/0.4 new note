@@ -1,4 +1,4 @@
-title 0.4 New Note ~ https://studies.cs.helsinki.fi/exampleapp/notes
+title 0.4 new note ~ https://studies.cs.helsinki.fi/exampleapp/notes
 
 browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_notes
 server-->browser: HTML-code (new_notes as text/html content-type)
