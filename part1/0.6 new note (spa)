@@ -1,8 +1,0 @@
-title 0.6 new note (spa)
-
-browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_notes_spa.json
-server-->browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
-
-note over browser:
-spa handles the json rendering notes to display
-end note
