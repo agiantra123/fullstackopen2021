@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import notesServices from './services/notes';
+
+const Notification = ({ message, className }) => {
+  if (message === null) {
+    return null;
+  }
+  return (
+    <div className={`${className}`}>
+      <p>{message}</p>
+    </div>
+  );
+};
 
 const Filter = ({ _value, _onChange }) => {
   return (
@@ -35,14 +46,21 @@ const PersonForm = ({
   );
 };
 
-const Persons = ({ _filteredPersons }) => {
+const Persons = ({ _filteredPersons, _onClick }) => {
   return (
     <div>
       {_filteredPersons.map((_filteredPerson) => {
         return (
-          <p key={_filteredPerson.name}>
-            {_filteredPerson.name} - {_filteredPerson.number}
-          </p>
+          <div key={_filteredPerson.number}>
+            <p>
+              {_filteredPerson.name} - {_filteredPerson.number}
+            </p>
+            <button
+              onClick={() => _onClick(_filteredPerson.id, _filteredPerson.name)}
+            >
+              Delete
+            </button>
+          </div>
         );
       })}
     </div>
@@ -54,12 +72,21 @@ const App = () => {
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [newFilter, setNewFilter] = useState('');
+  const [errorMessage, setErrorMessage] = useState({
+    message: null,
+    class: null,
+  });
 
   useEffect(() => {
-    axios.get('http://localhost:3001/persons').then((response) => {
-      const data = response.data;
+    notesServices.getAll().then((data) => {
       setPersons(data);
     });
+
+    // without separate module
+    // axios.get('http://localhost:3001/persons').then((response) => {
+    //   const data = response.data;
+    //   setPersons(data);
+    // });
   }, []);
 
   const handleNameChange = (event) => {
@@ -85,20 +112,83 @@ const App = () => {
 
   const submitNewName = (event) => {
     event.preventDefault();
+    const newPerson = { name: newName.trim(), number: newNumber.trim() };
     if (persons.find((person) => person.name === newName.trim())) {
-      alert(`${newName.trim()} is already added to phonebook`);
+      const person = persons.find((person) => person.name === newName.trim());
+      updateName(person.id, newPerson, person.name);
+      // alert(`${newName.trim()} is already added to phonebook`);
     } else {
-      setPersons(
-        persons.concat({ name: newName.trim(), number: newNumber.trim() })
-      );
-      setNewName('');
-      setNewNumber('');
+      notesServices.create(newPerson).then((data) => {
+        setPersons(persons.concat(data));
+        setErrorMessage({ message: `added ${data.name}`, class: 'success' });
+        setTimeout(() => setErrorMessage({ message: null, class: null }), 5000);
+        setNewName('');
+        setNewNumber('');
+      });
+
+      // without separate module
+      // axios
+      //   .post('http://localhost:3001/persons', newPerson)
+      //   .then((response) => {
+      //     setPersons(persons.concat(response.data));
+      //     setNewName('');
+      //     setNewNumber('');
+      //   });
+
+      // without updating db
+      // setPersons(
+      //   persons.concat({ name: newName.trim(), number: newNumber.trim() })
+      // );
+      // setNewName('');
+      // setNewNumber('');
+    }
+  };
+
+  const removeName = (id, name) => {
+    if (window.confirm(`Delete ${name}?`)) {
+      notesServices.remove(id).then((data) => {
+        setPersons(persons.filter((person) => person.id !== id));
+      });
+    }
+  };
+
+  const updateName = (id, newObject, name) => {
+    if (
+      window.confirm(
+        `${name} is already added to phonebook, replace the old number with a new one?`
+      )
+    ) {
+      notesServices
+        .update(id, newObject)
+        .then((data) => {
+          setPersons(
+            persons.map((person) => (person.id !== id ? person : data))
+          );
+          setErrorMessage({
+            message: `updated ${data.name}`,
+            class: 'success',
+          });
+          setTimeout(
+            () => setErrorMessage({ message: null, class: null }),
+            5000
+          );
+        })
+        .catch((error) => {
+          setErrorMessage({
+            message: `Information of ${newObject.name} has already been removed from server`,
+            class: 'error',
+          });
+        });
     }
   };
 
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification
+        message={errorMessage.message}
+        className={errorMessage.class}
+      />
       <Filter _value={newFilter} _onChange={handleFilterChange} />
 
       <h2>Add a new</h2>
@@ -111,7 +201,7 @@ const App = () => {
       />
 
       <h2>Numbers</h2>
-      <Persons _filteredPersons={filteredPersons()} />
+      <Persons _filteredPersons={filteredPersons()} _onClick={removeName} />
     </div>
   );
 };
