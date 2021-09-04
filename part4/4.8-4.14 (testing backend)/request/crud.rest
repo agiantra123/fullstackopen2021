@@ -1,0 +1,31 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Latest Updates: At Least 9 Dead as Ida Swamps New York City Area",
+  "author": "John Taggart",
+  "url": "https://www.nytimes.com/live/2021/09/02/nyregion/nyc-storm",
+  "likes": 16
+}
+
+###
+GET http://localhost:3001/api/blogs
+
+###
+GET http://localhost:3001/api/blogs/61331e372ca72f3e671c5231
+
+###
+PUT http://localhost:3001/api/blogs/613322e6e9f7542d57577c67
+Content-Type: application/json
+
+{
+  "title": "Edited: Latest Updates: At Least 9 Dead as Ida Swamps New York City Area",
+  "author": "John Taggart",
+  "url": "https://www.nytimes.com/live/2021/09/02/nyregion/nyc-storm",
+  "likes": 1600000
+}
+
+###
+DELETE http://localhost:3001/api/blogs/61331e372ca72f3e671c5231
+
+###
