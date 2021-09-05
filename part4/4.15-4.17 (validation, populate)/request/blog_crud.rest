@@ -1,0 +1,57 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Latest Updates: At Least 9 Dead as Ida Swamps New York City Area",
+  "author": "John Taggart",
+  "url": "https://www.nytimes.com/live/2021/09/02/nyregion/nyc-storm",
+  "likes": 16,
+  "userId": "613441d4ea7a1d3deefabe7f"
+}
+
+###
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "As China woos the Taliban, Uyghurs in Afghanistan fear for their lives",
+  "author": "Ivan Watson",
+  "url": "https://edition.cnn.com/2021/09/04/asia/uyghur-afghanistan-taliban-china-intl-hnk-dst/index.html",
+  "likes": 27,
+  "userId": "613441d4ea7a1d3deefabe7f"
+}
+
+###
+
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Thailand's Prime Minister has survived another no-confidence vote",
+  "author": "Johnson Ling",
+  "url": "https://edition.cnn.com/2021/09/04/asia/thailand-prime-minister-confidence-vote-intl-hnk/index.html",
+  "likes": 4,
+  "userId": "613444158b8e59624f4023f1"
+}
+
+###
+GET http://localhost:3001/api/blogs
+
+###
+GET http://localhost:3001/api/blogs/61331e372ca72f3e671c5231
+
+###
+PUT http://localhost:3001/api/blogs/613322e6e9f7542d57577c67
+Content-Type: application/json
+
+{
+  "title": "Edited: Latest Updates: At Least 9 Dead as Ida Swamps New York City Area",
+  "author": "John Taggart",
+  "url": "https://www.nytimes.com/live/2021/09/02/nyregion/nyc-storm",
+  "likes": 1600000
+}
+
+###
+DELETE http://localhost:3001/api/blogs/61331e372ca72f3e671c5231
+
+###
