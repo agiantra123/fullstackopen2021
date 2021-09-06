@@ -1,0 +1,71 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4xOTk1IiwiaWQiOiI2MTM0NDFkNGVhN2ExZDNkZWVmYWJlN2YiLCJpYXQiOjE2MzA4MTczODR9.VUAzTA9hFIuna3Ou90m41UwUswOHJfl5Vm2WsMqpvDY
+
+{
+  "title": "11:22 - Latest Updates: At Least 9 Dead as Ida Swamps New York City Area",
+  "author": "John Taggart",
+  "url": "https://www.nytimes.com/live/2021/09/02/nyregion/nyc-storm",
+  "likes": 16
+}
+
+###
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4xOTk1IiwiaWQiOiI2MTM0NDFkNGVhN2ExZDNkZWVmYWJlN2YiLCJpYXQiOjE2MzA4MTczODR9.VUAzTA9hFIuna3Ou90m41UwUswOHJfl5Vm2WsMqpvDY
+
+{
+  "title": "Middleware: As China woos the Taliban, Uyghurs in Afghanistan fear for their lives",
+  "author": "Ivan Watson",
+  "url": "https://edition.cnn.com/2021/09/04/asia/uyghur-afghanistan-taliban-china-intl-hnk-dst/index.html",
+  "likes": 27
+}
+
+###
+
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4xOTk1IiwiaWQiOiI2MTM0NDFkNGVhN2ExZDNkZWVmYWJlN2YiLCJpYXQiOjE2MzA4MTczODR9.VUAzTA9hFIuna3Ou90m41UwUswOHJfl5Vm2WsMqpvDY
+
+{
+  "title": "Middleware: Thailand's Prime Minister has survived another no-confidence vote",
+  "author": "Johnson Ling",
+  "url": "https://edition.cnn.com/2021/09/04/asia/thailand-prime-minister-confidence-vote-intl-hnk/index.html",
+  "likes": 4
+}
+
+###
+DELETE http://localhost:3001/api/blogs/6134d731f881e45d169f705f
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4xOTk1IiwiaWQiOiI2MTM0NDFkNGVhN2ExZDNkZWVmYWJlN2YiLCJpYXQiOjE2MzA4MTczODR9.VUAzTA9hFIuna3Ou90m41UwUswOHJfl5Vm2WsMqpvDY
+
+
+
+
+
+
+
+
+
+
+###
+GET http://localhost:3001/api/blogs
+
+###
+GET http://localhost:3001/api/blogs/61331e372ca72f3e671c5231
+
+###
+PUT http://localhost:3001/api/blogs/613322e6e9f7542d57577c67
+Content-Type: application/json
+
+{
+  "title": "Edited: Latest Updates: At Least 9 Dead as Ida Swamps New York City Area",
+  "author": "John Taggart",
+  "url": "https://www.nytimes.com/live/2021/09/02/nyregion/nyc-storm",
+  "likes": 1600000
+}
+
+###
+DELETE http://localhost:3001/api/blogs/61331e372ca72f3e671c5231
+
+###
