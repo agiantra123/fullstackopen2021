@@ -2,10 +2,12 @@
  * * Action Creators
  */
 
+let timeoutID;
 export const setNotif = (message, time) => {
   return async (dispatch) => {
+    clearTimeout(timeoutID);
     dispatch({ type: 'SET', message: message });
-    setTimeout(() => {
+    timeoutID = setTimeout(() => {
       dispatch(removeNotif());
     }, time);
   };
