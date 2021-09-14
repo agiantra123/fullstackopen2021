@@ -1,0 +1,77 @@
+{
+  "notes": [
+    {
+      "content": "custom-hooks are grat",
+      "id": 1
+    },
+    {
+      "content": "the best featrure ever <3",
+      "id": 2
+    },
+    {
+      "content": "dwda",
+      "id": 3
+    },
+    {
+      "content": "a",
+      "id": 4
+    },
+    {
+      "content": "dwad",
+      "id": 5
+    },
+    {
+      "content": "a",
+      "id": 6
+    },
+    {
+      "content": "a",
+      "id": 7
+    },
+    {
+      "content": "useeffect dependency every hook called",
+      "id": 8
+    },
+    {
+      "content": "useeffect dependency every hook called",
+      "id": 9
+    }
+  ],
+  "persons": [
+    {
+      "name": "mluukkai",
+      "number": "040-5483923",
+      "id": 1
+    },
+    {
+      "name": "kaltsoon",
+      "number": "045-2323456",
+      "id": 2
+    },
+    {
+      "name": "a",
+      "number": "a",
+      "id": 3
+    },
+    {
+      "name": "adw",
+      "number": "awda",
+      "id": 4
+    },
+    {
+      "name": "a",
+      "number": "dwa",
+      "id": 5
+    },
+    {
+      "name": "a",
+      "number": "a",
+      "id": 6
+    },
+    {
+      "name": "useeffect dependency every hook called",
+      "number": "232314242",
+      "id": 7
+    }
+  ]
+}
