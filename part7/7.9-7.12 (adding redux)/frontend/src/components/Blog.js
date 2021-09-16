@@ -38,7 +38,9 @@ const Blog = ({ blog, user }) => {
         {detailVisible ? 'hide' : 'show'}
       </button>
       <div className='details' style={isDetailVisible}>
-        <p>{blog.url}</p>
+        <p>
+          <a href={blog.url}>{blog.url}</a>
+        </p>
         <p style={{ display: 'inline-block' }}>likes {blog.likes}</p>
         <button id='like-button' onClick={addLikes}>
           like

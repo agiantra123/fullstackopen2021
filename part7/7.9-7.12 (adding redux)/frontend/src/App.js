@@ -1,32 +1,44 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import LoginForm from './components/LoginForm';
 import BlogForm from './components/BlogForm';
 import Blogs from './components/Blogs';
 
+import { initBlog } from './reducers/blogReducer';
+import { setUser } from './reducers/userReducer';
+import { setError, setSuccess } from './reducers/notificationReducer';
+
 import loginService from './services/loginService';
 import blogService from './services/blogsService';
 
 const App = () => {
+  const dispatch = useDispatch();
+
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
-
   const [createVisible, setCreateVisible] = useState(false);
-  const [successMessage, setSuccessMessage] = useState(null);
 
-  const [blogs, setBlogs] = useState([]);
+  // const [errorMessage, setErrorMessage] = useState(null);
+  // const [successMessage, setSuccessMessage] = useState(null);
+  const successMessage = useSelector((state) => state.notification.success);
+  const errorMessage = useSelector((state) => state.notification.error);
+
+  // const [user, setUser] = useState(null);
+  // const [blogs, setBlogs] = useState([]);
+  const user = useSelector((state) => state.user);
+  const blogs = useSelector((state) => state.blogs);
 
   useEffect(() => {
-    blogService.getAll().then((blogs) => setBlogs(blogs));
+    blogService.getAll().then((blogs) => dispatch(initBlog(blogs)));
   }, []);
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser');
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
-      setUser(user);
+      // setUser(user);
+      dispatch(setUser(user));
       blogService.setToken(user.token);
     }
   }, []);
@@ -41,14 +53,15 @@ const App = () => {
       });
       window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user));
       blogService.setToken(user.token);
-      setUser(user);
+      // setUser(user);
+      dispatch(setUser(user));
       setUserName('');
       setPassword('');
       console.log(user);
     } catch (e) {
-      setErrorMessage('Wrong credentials');
+      dispatch(setError('Wrong credentials'));
       setTimeout(() => {
-        setErrorMessage(null);
+        dispatch(setError(null));
       }, 5000);
     }
   };
@@ -56,7 +69,8 @@ const App = () => {
   const handleLogout = () => {
     window.localStorage.clear(); // option 1
     // window.localStorage.removeItem('loggedBlogappUser'); // option 2
-    setUser(null);
+    // setUser(null);
+    dispatch(setUser(null));
   };
 
   const hidewhenvisible = { display: createVisible ? 'none' : '' };
@@ -74,11 +88,17 @@ const App = () => {
       newBlog
       // `bearer ${user.token}` // option 1
     ); // option 2: using const token in blogsService, set every login automatically
-    setSuccessMessage(
-      `a new blog ${createdBlog.title} by ${createdBlog.author} added`
+    // setSuccessMessage(
+    //   `a new blog ${createdBlog.title} by ${createdBlog.author} added`
+    // );
+    dispatch(
+      setSuccess(
+        `a new blog ${createdBlog.title} by ${createdBlog.author} added`
+      )
     );
     setTimeout(() => {
-      setSuccessMessage(null);
+      // setSuccessMessage(null);
+      dispatch(setSuccess(null));
     }, 5000);
   };
 
