@@ -127,6 +127,9 @@ const App = () => {
 
   const handleSubmitComment = async (event, blog) => {
     event.preventDefault();
+    
+    if (comment.length === 0) return;
+    
     await blogsService.updateBlog(blog.id, {
       ...blog,
       comments: blog.comments.concat(comment),
