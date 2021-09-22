@@ -1,0 +1,43 @@
+{
+  "addBookTitle": "Clean Code",
+  "addBookPublished": 2008,
+  "addBookAuthor": "Robert Martin",
+  "addBookGenres": ["refactoring"]
+}
+{
+  "addBookTitle": "Agile software development",
+  "addBookPublished": 2002,
+  "addBookAuthor": "Robert Martin",
+  "addBookGenres": ["agile", "patterns", "design"]
+}
+{
+  "addBookTitle": "Refactoring, edition 2",
+  "addBookPublished": 2018,
+  "addBookAuthor": "Martin Fowler",
+  "addBookGenres": ["refactoring"]
+}
+{
+  "addBookTitle": "Refactoring to patterns",
+  "addBookPublished": 2008,
+  "addBookAuthor": "Joshua Kerievsky",
+  "addBookGenres": ["refactoring", "patterns"]
+}
+{
+  "addBookTitle": "Practical Object-Oriented Design, An Agile Primer Using Ruby",
+  "addBookPublished": 2012,
+  "addBookAuthor": "Sandi Metz",
+  "addBookGenres": ["refactoring", "design"]
+}
+{
+  "addBookTitle": "Crime and punishment",
+  "addBookPublished": 1866,
+  "addBookAuthor": "Fyodor Dostoevsky",
+  "addBookGenres": ["classic", "crime"]
+}
+{
+  "addBookTitle": "The Demon ",
+  "addBookPublished": 1872,
+  "addBookAuthor": "Fyodor Dostoevsky",
+  "addBookGenres": ["classic", "revolution"]
+}
+
